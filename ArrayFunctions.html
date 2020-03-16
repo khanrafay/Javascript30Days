@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    names = ["Yaran, Khan", "Caren, Junejo", "Aarez, Paracha"]
+
+    inventors = [
+        { firstName: "Zack", lastName: "Khan", year: 1858, passed: 1947 },
+        { firstName: "Mansoor", lastName: "Khan", year: 1768, passed: 1852 },
+        { firstName: "John", lastName: "Khan", year: 1815, passed: 1912 },
+        { firstName: "FAR", lastName: "Khan", year: 1878, passed: 1911 }
+    ]
+
+    //filter
+
+    const checkFilter = inventors.filter(inventor => inventor.year >= 1815)
+    console.table(checkFilter)
+
+    // map
+    const fullNames = inventors.map(inventor => `${inventor.firstName} ${inventor.lastName}`)
+    console.table(fullNames)
+
+    // sort
+
+    const ordered = inventors.sort((a, b) => a.year < b.year ? 1 : -1)
+    console.table(ordered)
+
+    // reduce
+    const totalYears = inventors.reduce((total, inventor) => {
+        return total + (inventor.passed - inventor.year)
+    }, 0)
+    console.table(totalYears)
+
+    // Sort according how many years lived
+
+    const orderLives = inventors.sort((a, b) => {
+        const prevGuy = a.passed - a.year
+        const nextGuy = b.passed - b.year
+        return prevGuy > nextGuy ? 1 : -1
+    })
+    console.table(orderLives)
+
+    // Boulevards of parris, filter out de names
+    // const category = document.querySelector("mv-category")
+    // const Links = Array.from(category.querySelectorAll("a"))
+    // const de = Links.map(link => link.textContent )
+    //                 .filter(link => link.includes('de'))
+
+    // sort by last names
+
+    const orderByLastName = names.sort((lastOne, nextOne) => {
+        const [aLast, aFirst] = lastOne.split(', ')
+        const [bLast, bFirst] = nextOne.split(', ')
+        return aLast > bLast ? 1 : -1
+    })
+    console.table(orderByLastName)
+
+    // reduce transport
+
+    const data = ['truck', 'car', 'truck', 'bike', 'car', 'cycle', 'helicopter', 'car']
+
+    const transportation = data.reduce((obj, item) => {
+        if (!obj[item])
+            obj[item] = 0
+        obj[item]++
+        return obj
+    }, {})
+    console.table(transportation)
+</script>
+
+<body>
+
+</body>
+
+</html>
